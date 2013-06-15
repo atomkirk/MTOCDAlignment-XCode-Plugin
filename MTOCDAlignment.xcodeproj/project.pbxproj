@@ -1,0 +1,351 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C20E39B3176D1E7800901512 /* MTOCDParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E39B2176D1E7800901512 /* MTOCDParagraph.m */; };
+		C20E39B6176D1EB300901512 /* MTOCDAssignmentLine.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E39B5176D1EB300901512 /* MTOCDAssignmentLine.m */; };
+		C20E39BA176D20E700901512 /* MTOCDAssignmentParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E39B9176D20E700901512 /* MTOCDAssignmentParagraph.m */; };
+		C20E39BD176D20FB00901512 /* MTOCDPropertyParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E39BC176D20FB00901512 /* MTOCDPropertyParagraph.m */; };
+		C2DBC0F1176CFAEF00073F74 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2DBC0F0176CFAEF00073F74 /* Cocoa.framework */; };
+		C2DBC0FB176CFAEF00073F74 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2DBC0F9176CFAEF00073F74 /* InfoPlist.strings */; };
+		C2DBC104176CFC8F00073F74 /* MTOCDAlignment.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DBC103176CFC8F00073F74 /* MTOCDAlignment.m */; };
+		C2E83D78176D0597001FA3AE /* MTOCDAligner.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E83D77176D0597001FA3AE /* MTOCDAligner.m */; };
+		C2E83D7C176D081F001FA3AE /* MTOCDPropertyLine.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E83D7B176D081F001FA3AE /* MTOCDPropertyLine.m */; };
+		C2E83D7F176D0A73001FA3AE /* MTOCDLine.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E83D7E176D0A73001FA3AE /* MTOCDLine.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C20E39B1176D1E7800901512 /* MTOCDParagraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTOCDParagraph.h; sourceTree = "<group>"; };
+		C20E39B2176D1E7800901512 /* MTOCDParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOCDParagraph.m; sourceTree = "<group>"; };
+		C20E39B4176D1EB300901512 /* MTOCDAssignmentLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTOCDAssignmentLine.h; sourceTree = "<group>"; };
+		C20E39B5176D1EB300901512 /* MTOCDAssignmentLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOCDAssignmentLine.m; sourceTree = "<group>"; };
+		C20E39B8176D20E700901512 /* MTOCDAssignmentParagraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTOCDAssignmentParagraph.h; sourceTree = "<group>"; };
+		C20E39B9176D20E700901512 /* MTOCDAssignmentParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOCDAssignmentParagraph.m; sourceTree = "<group>"; };
+		C20E39BB176D20FB00901512 /* MTOCDPropertyParagraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTOCDPropertyParagraph.h; sourceTree = "<group>"; };
+		C20E39BC176D20FB00901512 /* MTOCDPropertyParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOCDPropertyParagraph.m; sourceTree = "<group>"; };
+		C2DBC0ED176CFAEF00073F74 /* MTOCDAlignment.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MTOCDAlignment.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2DBC0F0176CFAEF00073F74 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		C2DBC0F3176CFAEF00073F74 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		C2DBC0F4176CFAEF00073F74 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C2DBC0F5176CFAEF00073F74 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C2DBC0F8176CFAEF00073F74 /* MTOCDAlignment-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MTOCDAlignment-Info.plist"; sourceTree = "<group>"; };
+		C2DBC0FA176CFAEF00073F74 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C2DBC0FC176CFAEF00073F74 /* MTOCDAlignment-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MTOCDAlignment-Prefix.pch"; sourceTree = "<group>"; };
+		C2DBC102176CFC8F00073F74 /* MTOCDAlignment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTOCDAlignment.h; sourceTree = "<group>"; };
+		C2DBC103176CFC8F00073F74 /* MTOCDAlignment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOCDAlignment.m; sourceTree = "<group>"; };
+		C2E83D76176D0597001FA3AE /* MTOCDAligner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTOCDAligner.h; sourceTree = "<group>"; };
+		C2E83D77176D0597001FA3AE /* MTOCDAligner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOCDAligner.m; sourceTree = "<group>"; };
+		C2E83D7A176D081F001FA3AE /* MTOCDPropertyLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTOCDPropertyLine.h; sourceTree = "<group>"; };
+		C2E83D7B176D081F001FA3AE /* MTOCDPropertyLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOCDPropertyLine.m; sourceTree = "<group>"; };
+		C2E83D7D176D0A73001FA3AE /* MTOCDLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTOCDLine.h; sourceTree = "<group>"; };
+		C2E83D7E176D0A73001FA3AE /* MTOCDLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOCDLine.m; sourceTree = "<group>"; };
+		C2E83D80176D0AC1001FA3AE /* MTOCDLine+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MTOCDLine+Protected.h"; sourceTree = "<group>"; };
+		C2E83D81176D17B8001FA3AE /* MTOCDLining.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTOCDLining.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C2DBC0EA176CFAEF00073F74 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2DBC0F1176CFAEF00073F74 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C20E39B7176D1FBA00901512 /* Paragraph Types */ = {
+			isa = PBXGroup;
+			children = (
+				C20E39B1176D1E7800901512 /* MTOCDParagraph.h */,
+				C20E39B2176D1E7800901512 /* MTOCDParagraph.m */,
+				C20E39BB176D20FB00901512 /* MTOCDPropertyParagraph.h */,
+				C20E39BC176D20FB00901512 /* MTOCDPropertyParagraph.m */,
+				C20E39B8176D20E700901512 /* MTOCDAssignmentParagraph.h */,
+				C20E39B9176D20E700901512 /* MTOCDAssignmentParagraph.m */,
+			);
+			name = "Paragraph Types";
+			sourceTree = "<group>";
+		};
+		C2DBC0E4176CFAEF00073F74 = {
+			isa = PBXGroup;
+			children = (
+				C2DBC0F6176CFAEF00073F74 /* MTOCDAlignment */,
+				C2DBC0EF176CFAEF00073F74 /* Frameworks */,
+				C2DBC0EE176CFAEF00073F74 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C2DBC0EE176CFAEF00073F74 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C2DBC0ED176CFAEF00073F74 /* MTOCDAlignment.xcplugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C2DBC0EF176CFAEF00073F74 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C2DBC0F0176CFAEF00073F74 /* Cocoa.framework */,
+				C2DBC0F2176CFAEF00073F74 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C2DBC0F2176CFAEF00073F74 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C2DBC0F3176CFAEF00073F74 /* AppKit.framework */,
+				C2DBC0F4176CFAEF00073F74 /* CoreData.framework */,
+				C2DBC0F5176CFAEF00073F74 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		C2DBC0F6176CFAEF00073F74 /* MTOCDAlignment */ = {
+			isa = PBXGroup;
+			children = (
+				C2DBC102176CFC8F00073F74 /* MTOCDAlignment.h */,
+				C2DBC103176CFC8F00073F74 /* MTOCDAlignment.m */,
+				C2E83D76176D0597001FA3AE /* MTOCDAligner.h */,
+				C2E83D77176D0597001FA3AE /* MTOCDAligner.m */,
+				C20E39B7176D1FBA00901512 /* Paragraph Types */,
+				C2E83D79176D07FA001FA3AE /* Line Types */,
+				C2DBC0F7176CFAEF00073F74 /* Supporting Files */,
+			);
+			path = MTOCDAlignment;
+			sourceTree = "<group>";
+		};
+		C2DBC0F7176CFAEF00073F74 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C2DBC0F8176CFAEF00073F74 /* MTOCDAlignment-Info.plist */,
+				C2DBC0F9176CFAEF00073F74 /* InfoPlist.strings */,
+				C2DBC0FC176CFAEF00073F74 /* MTOCDAlignment-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C2E83D79176D07FA001FA3AE /* Line Types */ = {
+			isa = PBXGroup;
+			children = (
+				C2E83D81176D17B8001FA3AE /* MTOCDLining.h */,
+				C2E83D80176D0AC1001FA3AE /* MTOCDLine+Protected.h */,
+				C2E83D7D176D0A73001FA3AE /* MTOCDLine.h */,
+				C2E83D7E176D0A73001FA3AE /* MTOCDLine.m */,
+				C2E83D7A176D081F001FA3AE /* MTOCDPropertyLine.h */,
+				C2E83D7B176D081F001FA3AE /* MTOCDPropertyLine.m */,
+				C20E39B4176D1EB300901512 /* MTOCDAssignmentLine.h */,
+				C20E39B5176D1EB300901512 /* MTOCDAssignmentLine.m */,
+			);
+			name = "Line Types";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C2DBC0EC176CFAEF00073F74 /* MTOCDAlignment */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C2DBC0FF176CFAEF00073F74 /* Build configuration list for PBXNativeTarget "MTOCDAlignment" */;
+			buildPhases = (
+				C2DBC0E9176CFAEF00073F74 /* Sources */,
+				C2DBC0EA176CFAEF00073F74 /* Frameworks */,
+				C2DBC0EB176CFAEF00073F74 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MTOCDAlignment;
+			productName = MTOCDAlignment;
+			productReference = C2DBC0ED176CFAEF00073F74 /* MTOCDAlignment.xcplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C2DBC0E5176CFAEF00073F74 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Mysterious Trousers";
+			};
+			buildConfigurationList = C2DBC0E8176CFAEF00073F74 /* Build configuration list for PBXProject "MTOCDAlignment" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C2DBC0E4176CFAEF00073F74;
+			productRefGroup = C2DBC0EE176CFAEF00073F74 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C2DBC0EC176CFAEF00073F74 /* MTOCDAlignment */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C2DBC0EB176CFAEF00073F74 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2DBC0FB176CFAEF00073F74 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C2DBC0E9176CFAEF00073F74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2DBC104176CFC8F00073F74 /* MTOCDAlignment.m in Sources */,
+				C2E83D78176D0597001FA3AE /* MTOCDAligner.m in Sources */,
+				C2E83D7C176D081F001FA3AE /* MTOCDPropertyLine.m in Sources */,
+				C2E83D7F176D0A73001FA3AE /* MTOCDLine.m in Sources */,
+				C20E39B3176D1E7800901512 /* MTOCDParagraph.m in Sources */,
+				C20E39B6176D1EB300901512 /* MTOCDAssignmentLine.m in Sources */,
+				C20E39BA176D20E700901512 /* MTOCDAssignmentParagraph.m in Sources */,
+				C20E39BD176D20FB00901512 /* MTOCDPropertyParagraph.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C2DBC0F9176CFAEF00073F74 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C2DBC0FA176CFAEF00073F74 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C2DBC0FD176CFAEF00073F74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C2DBC0FE176CFAEF00073F74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		C2DBC100176CFAEF00073F74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MTOCDAlignment/MTOCDAlignment-Prefix.pch";
+				INFOPLIST_FILE = "MTOCDAlignment/MTOCDAlignment-Info.plist";
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Debug;
+		};
+		C2DBC101176CFAEF00073F74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MTOCDAlignment/MTOCDAlignment-Prefix.pch";
+				INFOPLIST_FILE = "MTOCDAlignment/MTOCDAlignment-Info.plist";
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C2DBC0E8176CFAEF00073F74 /* Build configuration list for PBXProject "MTOCDAlignment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2DBC0FD176CFAEF00073F74 /* Debug */,
+				C2DBC0FE176CFAEF00073F74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C2DBC0FF176CFAEF00073F74 /* Build configuration list for PBXNativeTarget "MTOCDAlignment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2DBC100176CFAEF00073F74 /* Debug */,
+				C2DBC101176CFAEF00073F74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C2DBC0E5176CFAEF00073F74 /* Project object */;
+}
