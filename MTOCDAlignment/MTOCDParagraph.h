@@ -11,4 +11,5 @@
 
 @interface MTOCDParagraph : NSObject
 - (void)addLine:(MTOCDLine *)line;
+- (void)processLines;
 @end

@@ -11,4 +11,5 @@
 @protocol MTOCDLining <NSObject>
 + (BOOL)lineConforms:(NSString *)line;
 + (instancetype)lineWithContents:(NSString *)contents;
++ (Class)paragraphClass;
 @end

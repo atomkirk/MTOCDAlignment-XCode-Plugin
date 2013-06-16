@@ -12,5 +12,4 @@
 @property (nonatomic, retain) NSString *originalLine;
 @property (nonatomic, retain) NSArray *words;
 - (void)parse;
-+ (BOOL)line:(NSString *)line matchesRegexPattern:(NSString *)pattern;
 @end

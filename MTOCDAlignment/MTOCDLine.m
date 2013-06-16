@@ -8,14 +8,16 @@
 
 #import "MTOCDLine.h"
 #import "MTOCDLine+Protected.h"
+#import "MTOCDParagraph.h"
 
 
 @implementation MTOCDLine
 
 + (instancetype)lineWithContents:(NSString *)contents
 {
-    MTOCDLine *line     = [self new];
-    line.originalLine   = contents;
+    MTOCDLine *line   = [self new];
+    line.originalLine = contents;
+    [line convertTabsToSpaces];
     return line;
 }
 
@@ -24,9 +26,13 @@
     return YES;
 }
 
++ (Class)paragraphClass
+{
+    return [MTOCDParagraph class];
+}
+
 - (void)parse
 {
-    self.words = [self.originalLine componentsSeparatedByString:@" "];
 }
 
 - (NSString *)description
@@ -36,16 +42,22 @@
 
 
 
-#pragma mark - Protected
+#pragma mark - Private
 
-+ (BOOL)line:(NSString *)line matchesRegexPattern:(NSString *)pattern
+- (void)convertTabsToSpaces
 {
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
-                                                                           options:NSRegularExpressionAllowCommentsAndWhitespace
-                                                                             error:nil];
-    return [regex numberOfMatchesInString:line
-                                  options:0
-                                    range:NSMakeRange(0, [line length])];
+    while (true) {
+        NSRange rangeOfTab = [_originalLine rangeOfString:@"\t"];
+        if (rangeOfTab.location != NSNotFound) {
+            // TODO: get tab size from xcode somehow
+            NSString *spaces  = [@"" stringByPaddingToLength:4 withString:@" " startingAtIndex:0];
+            self.originalLine = [_originalLine stringByReplacingCharactersInRange:rangeOfTab withString:spaces];
+        }
+        else {
+            break;
+        }
+    }
 }
+
 
 @end

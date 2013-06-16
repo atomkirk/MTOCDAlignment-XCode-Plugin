@@ -53,10 +53,11 @@
 
 		NSArray *selectedRanges = [self.textView selectedRanges];
 		if (selectedRanges.count >= 1) {
-			NSRange selectedRange = [[selectedRanges objectAtIndex:0] rangeValue];
-			NSString *text = self.textView.textStorage.string;
-            self.selectedStringRange    = [text lineRangeForRange:selectedRange];
-            self.selectedStringContent  = [text substringWithRange:_selectedStringRange];
+            NSRange selectedRange      = [[selectedRanges objectAtIndex:0] rangeValue];
+            NSString *text             = self.textView.textStorage.string;
+            self.selectedStringRange   = [text lineRangeForRange:selectedRange];
+            self.selectedStringContent = [text substringWithRange:_selectedStringRange];
+            NSString *tse              = nil;
 		}
 	}
 }
@@ -68,9 +69,13 @@
 - (void)alignTextOCDStyle:(id)sender
 {
     if (_selectedStringContent && [_selectedStringContent length] >= 2) {
+        NSRange currentSelectedRange = [self.textView selectedRange];
         [self.textView.undoManager beginUndoGrouping];
         [self.textView insertText:[self alignedString] replacementRange:_selectedStringRange];
         [self.textView.undoManager endUndoGrouping];
+        if (currentSelectedRange.location != NSNotFound) {
+            [self.textView setSelectedRange:currentSelectedRange];
+        }
     }
 }
 

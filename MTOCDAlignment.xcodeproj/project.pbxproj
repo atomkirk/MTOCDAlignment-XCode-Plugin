@@ -11,6 +11,7 @@
 		C20E39B6176D1EB300901512 /* MTOCDAssignmentLine.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E39B5176D1EB300901512 /* MTOCDAssignmentLine.m */; };
 		C20E39BA176D20E700901512 /* MTOCDAssignmentParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E39B9176D20E700901512 /* MTOCDAssignmentParagraph.m */; };
 		C20E39BD176D20FB00901512 /* MTOCDPropertyParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E39BC176D20FB00901512 /* MTOCDPropertyParagraph.m */; };
+		C2BB01C8176D7A9C00293E3E /* NSString+Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BB01C7176D7A9C00293E3E /* NSString+Regex.m */; };
 		C2DBC0F1176CFAEF00073F74 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2DBC0F0176CFAEF00073F74 /* Cocoa.framework */; };
 		C2DBC0FB176CFAEF00073F74 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2DBC0F9176CFAEF00073F74 /* InfoPlist.strings */; };
 		C2DBC104176CFC8F00073F74 /* MTOCDAlignment.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DBC103176CFC8F00073F74 /* MTOCDAlignment.m */; };
@@ -28,6 +29,9 @@
 		C20E39B9176D20E700901512 /* MTOCDAssignmentParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOCDAssignmentParagraph.m; sourceTree = "<group>"; };
 		C20E39BB176D20FB00901512 /* MTOCDPropertyParagraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTOCDPropertyParagraph.h; sourceTree = "<group>"; };
 		C20E39BC176D20FB00901512 /* MTOCDPropertyParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOCDPropertyParagraph.m; sourceTree = "<group>"; };
+		C20E39BE176D268600901512 /* MTOCDParagraph+Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MTOCDParagraph+Protected.h"; sourceTree = "<group>"; };
+		C2BB01C6176D7A9C00293E3E /* NSString+Regex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Regex.h"; sourceTree = "<group>"; };
+		C2BB01C7176D7A9C00293E3E /* NSString+Regex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Regex.m"; sourceTree = "<group>"; };
 		C2DBC0ED176CFAEF00073F74 /* MTOCDAlignment.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MTOCDAlignment.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2DBC0F0176CFAEF00073F74 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C2DBC0F3176CFAEF00073F74 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -63,6 +67,7 @@
 		C20E39B7176D1FBA00901512 /* Paragraph Types */ = {
 			isa = PBXGroup;
 			children = (
+				C20E39BE176D268600901512 /* MTOCDParagraph+Protected.h */,
 				C20E39B1176D1E7800901512 /* MTOCDParagraph.h */,
 				C20E39B2176D1E7800901512 /* MTOCDParagraph.m */,
 				C20E39BB176D20FB00901512 /* MTOCDPropertyParagraph.h */,
@@ -71,6 +76,15 @@
 				C20E39B9176D20E700901512 /* MTOCDAssignmentParagraph.m */,
 			);
 			name = "Paragraph Types";
+			sourceTree = "<group>";
+		};
+		C2BB01C2176D799200293E3E /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				C2BB01C6176D7A9C00293E3E /* NSString+Regex.h */,
+				C2BB01C7176D7A9C00293E3E /* NSString+Regex.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		C2DBC0E4176CFAEF00073F74 = {
@@ -118,6 +132,7 @@
 				C2E83D77176D0597001FA3AE /* MTOCDAligner.m */,
 				C20E39B7176D1FBA00901512 /* Paragraph Types */,
 				C2E83D79176D07FA001FA3AE /* Line Types */,
+				C2BB01C2176D799200293E3E /* Categories */,
 				C2DBC0F7176CFAEF00073F74 /* Supporting Files */,
 			);
 			path = MTOCDAlignment;
@@ -218,6 +233,7 @@
 				C20E39B6176D1EB300901512 /* MTOCDAssignmentLine.m in Sources */,
 				C20E39BA176D20E700901512 /* MTOCDAssignmentParagraph.m in Sources */,
 				C20E39BD176D20FB00901512 /* MTOCDPropertyParagraph.m in Sources */,
+				C2BB01C8176D7A9C00293E3E /* NSString+Regex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,17 +8,19 @@
 
 #import "MTOCDPropertyLine.h"
 #import "MTOCDLine+Protected.h"
+#import "MTOCDPropertyParagraph.h"
+#import "NSString+Regex.h"
+
+
+static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitmask & value) == value; }
 
 
 @interface MTOCDPropertyLine ()
-@property (nonatomic, retain) NSString  *storageType;
-@property (nonatomic, assign) BOOL      isNonAtomic;
-@property (nonatomic, assign) BOOL      isReadOnly;
-@property (nonatomic, assign) BOOL      isReadWrite;
-@property (nonatomic, assign) BOOL      isOutlet;
-@property (nonatomic, retain) NSString  *propertyType;
-@property (nonatomic, assign) BOOL      isPointer;
-@property (nonatomic, retain) NSString  *propertyName;
+@property (nonatomic, assign)          BOOL     isPointer;
+@property (nonatomic, retain)          NSString *readingType;
+@property (nonatomic, retain)          NSString *storageType;
+@property (nonatomic, retain) IBOutlet NSString *propertyType;
+@property (nonatomic, retain)          NSString *propertyName;
 @end
 
 
@@ -28,25 +30,85 @@
 {
     self = [super init];
     if (self) {
-        _isNonAtomic    = NO;
-        _isReadOnly     = NO;
-        _isReadWrite    = NO;
-        _isOutlet       = NO;
-        _isPointer      = NO;
+        _columnMask        			= 0;
+        _alignedColumnMask 			= 0;
+        _isPointer         			= 0;
     }
     return self;
 }
 
 + (BOOL)lineConforms:(NSString *)line
 {
-    return [self line:line matchesRegexPattern:@"\\@property"];
+    return [line matchesPattern:@"\\@property"];
 }
 
-//- (NSString *)description
-//{
-//    [self parse];
-//    return [NSString stringWithFormat:@"@property (%@) %@ %@%@", @"nonatomic", _propertyType, @"*", _propertyName ];
-//}
++ (Class)paragraphClass
+{
+    return [MTOCDPropertyParagraph class];
+}
+
+- (NSString *)description
+{
+    NSMutableArray *string = [NSMutableArray new];
+
+
+    [string addObject:@"@property"];
+
+
+    NSMutableArray *qualifiers = [NSMutableArray new];
+    if (isInMask(_alignedColumnMask, MTOCDPropertyLineColumnMaskNonatomic)) {
+        [qualifiers addObject:[self nonatomicString]];
+    }
+
+    if (isInMask(_alignedColumnMask, MTOCDPropertyLineColumnMaskReading)) {
+        NSString *s = [[self readingTypeString] stringByPaddingToLength:_alignedReadingTypeLength
+                                                             withString:@" "
+                                                        startingAtIndex:0];
+        [qualifiers addObject:s];
+    }
+
+    if (isInMask(_alignedColumnMask, MTOCDPropertyLineColumnMaskStorageType)) {
+        NSString *s = [[self storageTypeString] stringByPaddingToLength:_alignedStorageTypeLength
+                                                             withString:@" "
+                                                        startingAtIndex:0];
+        [qualifiers addObject:s];
+    }
+
+    NSString *qualifiersString = [qualifiers componentsJoinedByString:@", "];
+    qualifiersString = [NSString stringWithFormat:@"(%@)", qualifiersString];
+    qualifiersString = [qualifiersString stringByReplacingPattern:@"(\\s+?)\\)" withTemplate:@")$1"];
+    qualifiersString = [qualifiersString stringByReplacingPattern:@"(\\s+?)," withTemplate:@",$1"];
+    qualifiersString = [qualifiersString stringByReplacingOccurrencesOfString:@",," withString:@", "];
+    [string addObject:qualifiersString];
+
+
+    if (isInMask(_alignedColumnMask, MTOCDPropertyLineColumnMaskOutlet)) {
+        [string addObject:[self outletString]];
+    }
+
+
+    [string addObject:[self propertyTypeString]];
+    [string addObject:[self propertyNameString]];
+
+
+    return [NSString stringWithFormat:@"%@;", [string componentsJoinedByString:@" "]];
+}
+
+- (NSInteger)storageTypeLength
+{
+    return [_storageType length];
+}
+
+- (NSInteger)propertyTypeLength
+{
+    return [_propertyType length];
+}
+
+- (NSInteger)readingTypeLength
+{
+    return [_readingType length];
+}
+
 
 
 
@@ -54,22 +116,42 @@
 
 - (void)parse
 {
+    [super parse];
+
+    NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:@",@() "];
+    self.words = [self.originalLine componentsSeparatedByCharactersInSet:charSet];
+
+    NSLog(@"%@", self.words);
+
     NSMutableArray *words = [NSMutableArray array];
     for (NSString *word in self.words) {
-        NSString *cleanWord = [word stringByTrimmingCharactersInSet:[NSCharacterSet alphanumericCharacterSet]];
+        NSString *cleanWord = [word stringByTrimmingCharactersInSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]];
         [words addObject:cleanWord];
     }
 
-    NSArray *storageTypes = @[@"strong", @"assign", @"weak", @"retain", @"unsafe_unretained"];
+    NSArray *storageTypes = @[@"strong", @"assign", @"weak", @"retain", @"unsafe_unretained", @"copy"];
 
     // look for keywords
     for (NSString *word in [words copy]) {
 
+        // get rid of whitespace
+        if ([word isEqualToString:@""]) {
+            [words removeObject:word];
+            continue;
+        }
+
+        // get rid of property
+        if ([word isEqualToString:@"property"]) {
+            [words removeObject:word];
+            continue;
+        }
+
         // storage type
         if (!self.storageType) {
             for (NSString *st in storageTypes) {
-                if ([word isEqualToString:@"strong"]) {
+                if ([word isEqualToString:st]) {
                     self.storageType = word;
+                    _columnMask |= MTOCDPropertyLineColumnMaskStorageType;
                     break;
                 }
             }
@@ -80,56 +162,44 @@
         }
 
         // nonatomic
-        if (!_isNonAtomic) {
-            if ([word isEqualToString:@"nonatomic"]) {
-                _isNonAtomic = YES;
-                [words removeObject:word];
-            }
+        if ([word isEqualToString:@"nonatomic"]) {
+            _columnMask |= MTOCDPropertyLineColumnMaskNonatomic;
+            [words removeObject:word];
+            continue;
         }
 
         // readonly
-        if (!_isReadOnly) {
-            if ([word isEqualToString:@"readonly"]) {
-                _isReadOnly = YES;
-                [words removeObject:word];
-            }
+        if ([word isEqualToString:@"readonly"]) {
+            _readingType = word;
+            _columnMask |= MTOCDPropertyLineColumnMaskReading;
+            [words removeObject:word];
+            continue;
         }
 
         // readwrite
-        if (!_isReadWrite) {
-            if ([word isEqualToString:@"readwrite"]) {
-                _isReadWrite = YES;
-                [words removeObject:word];
-            }
+        if ([word isEqualToString:@"readwrite"]) {
+            _readingType = word;
+            _columnMask |= MTOCDPropertyLineColumnMaskReading;
+            [words removeObject:word];
+            continue;
         }
 
         // outlet
-        if (!_isOutlet) {
-            if ([word isEqualToString:@"IBOutlet"]) {
-                _isOutlet = YES;
-                [words removeObject:word];
-            }
+        if ([word isEqualToString:@"IBOutlet"]) {
+            _columnMask |= MTOCDPropertyLineColumnMaskOutlet;
+            [words removeObject:word];
         }
     }
 
     // pointer
-    if (!_isPointer) {
-        if ([self.originalLine rangeOfString:@"*"].location != NSNotFound) {
-            _isPointer = YES;
-        }
+    if ([self.originalLine rangeOfString:@"*"].location != NSNotFound) {
+        _isPointer = YES;
     }
 
-    for (NSString *word in [words copy]) {
-        if (![word isEqualToString:@""]) {
-            if (!_propertyType) {
-                _propertyType = word;
-                [words removeObject:word];
-            }
-            else {
-                _propertyName = word;
-                [words removeObject:word];
-            }
-        }
+    if ([words count] > 1) {
+        _propertyName      	= [words lastObject];
+        [words removeObject:_propertyName];
+        _propertyType      	= [words componentsJoinedByString:@" "];
     }
 }
 
@@ -139,13 +209,43 @@
 
 - (NSString *)nonatomicString
 {
-    return _isNonAtomic ? @"nonatomic" : @"";
+    NSString *s = @"nonatomic";
+    return isInMask(_columnMask, MTOCDPropertyLineColumnMaskNonatomic) ? s : [self emptyStringOfLength:[s length]];
 }
 
-//- (NSString *)nonatomicString
-//{
-//    return _isReadOnly ? @", readonly" : @"";
-//}
+- (NSString *)readingTypeString
+{
+    return isInMask(_columnMask, MTOCDPropertyLineColumnMaskReading) ? _readingType : [self emptyStringOfLength:[_readingType length]];
+}
+
+- (NSString *)storageTypeString
+{
+    return isInMask(_columnMask, MTOCDPropertyLineColumnMaskStorageType) ? _storageType : @"strong";
+}
+
+- (NSString *)outletString
+{
+    NSString *s = @"IBOutlet";
+    return isInMask(_columnMask, MTOCDPropertyLineColumnMaskOutlet) ? s : [self emptyStringOfLength:[s length]];
+}
+
+- (NSString *)propertyTypeString
+{
+    return [_propertyType stringByPaddingToLength:_alignedPropertyTypeLength withString:@" " startingAtIndex:0];
+}
+
+- (NSString *)propertyNameString
+{
+    return [NSString stringWithFormat:@"%@%@", (_isPointer ? @"*" : @""), _propertyName];
+}
+
+
+#pragma mark (strings)
+
+- (NSString *)emptyStringOfLength:(NSInteger)length
+{
+    return [@"" stringByPaddingToLength:length withString:@" " startingAtIndex:0];
+}
 
 
 @end

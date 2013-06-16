@@ -8,6 +8,8 @@
 
 #import "MTOCDAssignmentLine.h"
 #import "MTOCDLine+Protected.h"
+#import "MTOCDAssignmentParagraph.h"
+#import "NSString+Regex.h"
 
 
 @interface MTOCDAssignmentLine ()
@@ -19,28 +21,28 @@
 
 @implementation MTOCDAssignmentLine
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-    }
-    return self;
-}
-
 + (BOOL)lineConforms:(NSString *)line
 {
-    return [self line:line matchesRegexPattern:@"\\@property"];
+    return [line rangeOfPattern:@"^[a-zA-Z0-9\\*\\s\\+\\-/|%&!_@\\.]+?="].location != NSNotFound;
+}
+
++ (Class)paragraphClass
+{
+    return [MTOCDAssignmentParagraph class];
 }
 
 - (NSString *)description
 {
-    [self parse];
-    return @"";
+//    NSLog(@"1paragraph: %@ ------ %@ ------ %@", _beforeEquals, _shorthandSymbol, _afterEquals);
+    NSInteger length = _shorthandSymbol ? _alignmentColumn - 1 : _alignmentColumn;
+    _beforeEquals    = [_beforeEquals stringByPaddingToLength:length withString:@" " startingAtIndex:0];
+//    NSLog(@"2paragraph: %@ ------ %@ ------ %@", _beforeEquals, _shorthandSymbol, _afterEquals);
+    return [NSString stringWithFormat:@"%@%@= %@", _beforeEquals, (_shorthandSymbol ?: @""), _afterEquals];
 }
 
-- (NSInteger)currentColumn
+- (NSUInteger)currentColumn
 {
-    return [self.originalLine rangeOfString:@"="].location;
+    return [_beforeEquals length];
 }
 
 
@@ -49,10 +51,18 @@
 
 - (void)parse
 {
-    NSArray *parts = [self.originalLine componentsSeparatedByString:@"="];
-    if ([parts count] > 0) {
+    [super parse];
+    
+    NSRange range = [self rangeUpToEquals];
+    if (range.location != NSNotFound) {
+
         // before
-        _beforeEquals   = parts[0];
+//        NSLog(@"orig ========> %@", self.originalLine);
+//        NSLog(@"rang ========> %@", NSStringFromRange(range));
+        _beforeEquals = [self.originalLine substringToIndex:range.length];
+//        NSLog(@"aft1 ========> %@", _beforeEquals);
+        _beforeEquals = [_beforeEquals stringByReplacingPattern:@"\\s*?=" withTemplate:@" "];
+//        NSLog(@"aft2 ========> %@", _beforeEquals);
 
         // shortcut symbol
         unichar lastChar = [_beforeEquals characterAtIndex:[_beforeEquals length] - 1];
@@ -60,10 +70,19 @@
             _shorthandSymbol = [NSString stringWithFormat:@"%c", lastChar];
         }
 
-        // after
-        NSArray *after  = [parts objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, [parts count] - 1)]];
-        _afterEquals    = [after componentsJoinedByString:@"="];
+        // after (might have a chained reaction)
+        _afterEquals = [self.originalLine substringFromIndex:range.length];
+        _afterEquals = [_afterEquals stringByReplacingPattern:@"^\\s*?(\\S)" withTemplate:@"$1"];
     }
+}
+
+
+
+#pragma mark - Private
+
+- (NSRange)rangeUpToEquals
+{
+    return [self.originalLine rangeOfPattern:@"^[^\\\"]+?="];
 }
 
 @end

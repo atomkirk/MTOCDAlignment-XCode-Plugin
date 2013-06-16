@@ -9,6 +9,6 @@
 #import "MTOCDLine.h"
 
 @interface MTOCDAssignmentLine : MTOCDLine
-@property (nonatomic, assign, readonly) NSInteger currentColumn;
-@property (nonatomic, assign)           NSInteger targetColumn;
+@property (nonatomic, assign, readonly) NSUInteger currentColumn;
+@property (nonatomic, assign)           NSUInteger alignmentColumn;
 @end

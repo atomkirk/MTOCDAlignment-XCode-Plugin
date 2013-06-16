@@ -7,7 +7,40 @@
 //
 
 #import "MTOCDPropertyParagraph.h"
+#import "MTOCDParagraph+Protected.h"
+#import "MTOCDPropertyLine.h"
+
 
 @implementation MTOCDPropertyParagraph
+
+- (void)processLines
+{
+    [super processLines];
+
+    MTOCDPropertyLineColumnMask columnMask  = 0;
+    NSInteger maxStorageTypeLength          = 0;
+    NSInteger maxPropertyTypeLength         = 0;
+    NSInteger maxReadingTypeLength          = 0;
+
+    for (MTOCDPropertyLine *line in self.typeLines) {
+        columnMask |= line.columnMask;
+        if (line.storageTypeLength > maxStorageTypeLength) {
+            maxStorageTypeLength = line.storageTypeLength;
+        }
+        if (line.propertyTypeLength > maxPropertyTypeLength) {
+            maxPropertyTypeLength = line.propertyTypeLength;
+        }
+        if (line.readingTypeLength > maxReadingTypeLength) {
+            maxReadingTypeLength = line.readingTypeLength;
+        }
+    }
+
+    for (MTOCDPropertyLine *line in self.typeLines) {
+        line.alignedColumnMask        	= columnMask;
+        line.alignedStorageTypeLength 	= maxStorageTypeLength;
+        line.alignedPropertyTypeLength  = maxPropertyTypeLength;
+        line.alignedReadingTypeLength   = maxReadingTypeLength;
+    }
+}
 
 @end
