@@ -31,13 +31,17 @@
     return [MTOCDAssignmentParagraph class];
 }
 
-- (NSString *)description
+- (void)format
 {
-//    NSLog(@"1paragraph: %@ ------ %@ ------ %@", _beforeEquals, _shorthandSymbol, _afterEquals);
     NSInteger length = _shorthandSymbol ? _alignmentColumn - 1 : _alignmentColumn;
     _beforeEquals    = [_beforeEquals stringByPaddingToLength:length withString:@" " startingAtIndex:0];
-//    NSLog(@"2paragraph: %@ ------ %@ ------ %@", _beforeEquals, _shorthandSymbol, _afterEquals);
-    return [NSString stringWithFormat:@"%@%@= %@", _beforeEquals, (_shorthandSymbol ?: @""), _afterEquals];
+    self.contents = [NSString stringWithFormat:@"%@%@= %@", _beforeEquals, (_shorthandSymbol ?: @""), _afterEquals];
+    [super format];
+}
+
+- (NSString *)description
+{
+    return self.contents;
 }
 
 - (NSUInteger)currentColumn
@@ -57,12 +61,8 @@
     if (range.location != NSNotFound) {
 
         // before
-//        NSLog(@"orig ========> %@", self.originalLine);
-//        NSLog(@"rang ========> %@", NSStringFromRange(range));
-        _beforeEquals = [self.originalLine substringToIndex:range.length];
-//        NSLog(@"aft1 ========> %@", _beforeEquals);
+        _beforeEquals = [self.contents substringToIndex:range.length];
         _beforeEquals = [_beforeEquals stringByReplacingPattern:@"\\s*?=" withTemplate:@" "];
-//        NSLog(@"aft2 ========> %@", _beforeEquals);
 
         // shortcut symbol
         unichar lastChar = [_beforeEquals characterAtIndex:[_beforeEquals length] - 1];
@@ -71,7 +71,7 @@
         }
 
         // after (might have a chained reaction)
-        _afterEquals = [self.originalLine substringFromIndex:range.length];
+        _afterEquals = [self.contents substringFromIndex:range.length];
         _afterEquals = [_afterEquals stringByReplacingPattern:@"^\\s*?(\\S)" withTemplate:@"$1"];
     }
 }
@@ -82,7 +82,7 @@
 
 - (NSRange)rangeUpToEquals
 {
-    return [self.originalLine rangeOfPattern:@"^[^\\\"]+?="];
+    return [self.contents rangeOfPattern:@"^[^\\\"]+?="];
 }
 
 @end

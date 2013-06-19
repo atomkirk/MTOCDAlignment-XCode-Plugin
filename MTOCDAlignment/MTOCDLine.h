@@ -10,5 +10,5 @@
 
 
 @interface MTOCDLine : NSObject <MTOCDLining>
-- (void)parse;
+- (NSInteger)length;
 @end

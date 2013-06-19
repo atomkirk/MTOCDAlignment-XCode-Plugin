@@ -11,4 +11,5 @@
 - (NSString *)stringByReplacingPattern:(NSString *)pattern withTemplate:(NSString *)aTemplate;
 - (BOOL)matchesPattern:(NSString *)pattern;
 - (NSRange)rangeOfPattern:(NSString *)pattern;
+- (NSArray *)rangesOfPattern:(NSString *)pattern;
 @end

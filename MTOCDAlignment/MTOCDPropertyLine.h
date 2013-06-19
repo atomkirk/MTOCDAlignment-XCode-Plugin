@@ -10,10 +10,10 @@
 
 
 typedef NS_OPTIONS(NSUInteger, MTOCDPropertyLineColumnMask) {
-    MTOCDPropertyLineColumnMaskNonatomic    = 0,
-    MTOCDPropertyLineColumnMaskReading      = 1,
-    MTOCDPropertyLineColumnMaskStorageType  = 1 << 1,
-    MTOCDPropertyLineColumnMaskOutlet       = 1 << 2,
+    MTOCDPropertyLineColumnMaskNonatomic    = 1,
+    MTOCDPropertyLineColumnMaskReading      = 1 << 1,
+    MTOCDPropertyLineColumnMaskStorageType  = 1 << 2,
+    MTOCDPropertyLineColumnMaskOutlet       = 1 << 3,
 };
 
 

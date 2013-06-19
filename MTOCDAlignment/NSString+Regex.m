@@ -38,5 +38,12 @@
                                       range:NSMakeRange(0, [self length])];
 }
 
+- (NSArray *)rangesOfPattern:(NSString *)pattern
+{
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
+                                                                           options:NSRegularExpressionAllowCommentsAndWhitespace
+                                                                             error:nil];
+    return [regex matchesInString:self options:0 range:NSMakeRange(0, [self length])];
+}
 
 @end

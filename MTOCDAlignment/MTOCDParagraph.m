@@ -27,8 +27,6 @@
 {
     [_lines addObject:line];
 
-//    NSLog(@"=====> line class: %@ %@", NSStringFromClass([line class]), line.originalLine);
-
     // if this is not a generic line
     if (![line isMemberOfClass:[MTOCDLine class]]) {
         [_typeLines addObject:line];
@@ -45,7 +43,45 @@
 - (NSString *)description
 {
     [self processLines];
+    [self formatLines];
+    [self postFormatLines];
     return [_lines componentsJoinedByString:@"\n"];
+}
+
+
+
+#pragma mark - Private
+
+- (void)calculateCommentColumn
+{
+    NSInteger maxCommentColumn = 0;
+    for (MTOCDLine *line in _lines) {
+        if ([line length] > maxCommentColumn) {
+            maxCommentColumn = [line length];
+        }
+    }
+
+    maxCommentColumn = [MTOCDLine tabAlignedColumnWithColumn:maxCommentColumn];
+
+    for (MTOCDLine *line in _lines) {
+        line.alignedCommentColumn = maxCommentColumn;
+    }
+}
+
+- (void)formatLines
+{
+    for (MTOCDLine *line in _lines) {
+        [line format];
+    }
+}
+
+- (void)postFormatLines
+{
+    [self calculateCommentColumn];
+
+    for (MTOCDLine *line in _lines) {
+        [line postFormat];
+    }
 }
 
 @end

@@ -47,7 +47,7 @@ static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitm
     return [MTOCDPropertyParagraph class];
 }
 
-- (NSString *)description
+- (void)format
 {
     NSMutableArray *string = [NSMutableArray new];
 
@@ -60,13 +60,6 @@ static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitm
         [qualifiers addObject:[self nonatomicString]];
     }
 
-    if (isInMask(_alignedColumnMask, MTOCDPropertyLineColumnMaskReading)) {
-        NSString *s = [[self readingTypeString] stringByPaddingToLength:_alignedReadingTypeLength
-                                                             withString:@" "
-                                                        startingAtIndex:0];
-        [qualifiers addObject:s];
-    }
-
     if (isInMask(_alignedColumnMask, MTOCDPropertyLineColumnMaskStorageType)) {
         NSString *s = [[self storageTypeString] stringByPaddingToLength:_alignedStorageTypeLength
                                                              withString:@" "
@@ -74,11 +67,16 @@ static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitm
         [qualifiers addObject:s];
     }
 
-    NSString *qualifiersString = [qualifiers componentsJoinedByString:@", "];
+    if (isInMask(_alignedColumnMask, MTOCDPropertyLineColumnMaskReading)) {
+        NSString *s = [[self readingTypeString] stringByPaddingToLength:_alignedReadingTypeLength
+                                                             withString:@" "
+                                                        startingAtIndex:0];
+        [qualifiers addObject:s];
+    }
+
+    NSString *qualifiersString = [qualifiers componentsJoinedByString:@"  "];
     qualifiersString = [NSString stringWithFormat:@"(%@)", qualifiersString];
-    qualifiersString = [qualifiersString stringByReplacingPattern:@"(\\s+?)\\)" withTemplate:@")$1"];
-    qualifiersString = [qualifiersString stringByReplacingPattern:@"(\\s+?)," withTemplate:@",$1"];
-    qualifiersString = [qualifiersString stringByReplacingOccurrencesOfString:@",," withString:@", "];
+    qualifiersString = [qualifiersString stringByReplacingPattern:@"([a-z])\\s(\\s*?)([a-z])" withTemplate:@"$1,$2$3"];
     [string addObject:qualifiersString];
 
 
@@ -91,7 +89,14 @@ static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitm
     [string addObject:[self propertyNameString]];
 
 
-    return [NSString stringWithFormat:@"%@;", [string componentsJoinedByString:@" "]];
+    self.contents = [NSString stringWithFormat:@"%@;", [string componentsJoinedByString:@" "]];
+
+    [super format];
+}
+
+- (NSString *)description
+{
+    return self.contents;
 }
 
 - (NSInteger)storageTypeLength
@@ -119,7 +124,7 @@ static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitm
     [super parse];
 
     NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:@",@() "];
-    self.words = [self.originalLine componentsSeparatedByCharactersInSet:charSet];
+    self.words = [self.contents componentsSeparatedByCharactersInSet:charSet];
 
     NSLog(@"%@", self.words);
 
@@ -192,7 +197,7 @@ static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitm
     }
 
     // pointer
-    if ([self.originalLine rangeOfString:@"*"].location != NSNotFound) {
+    if ([self.contents rangeOfString:@"*"].location != NSNotFound) {
         _isPointer = YES;
     }
 
@@ -220,7 +225,7 @@ static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitm
 
 - (NSString *)storageTypeString
 {
-    return isInMask(_columnMask, MTOCDPropertyLineColumnMaskStorageType) ? _storageType : @"strong";
+    return isInMask(_columnMask, MTOCDPropertyLineColumnMaskStorageType) ? _storageType : [self emptyStringOfLength:_alignedStorageTypeLength];
 }
 
 - (NSString *)outletString

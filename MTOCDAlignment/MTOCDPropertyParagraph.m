@@ -18,28 +18,28 @@
     [super processLines];
 
     MTOCDPropertyLineColumnMask columnMask  = 0;
+    NSInteger maxReadingTypeLength          = 0;
     NSInteger maxStorageTypeLength          = 0;
     NSInteger maxPropertyTypeLength         = 0;
-    NSInteger maxReadingTypeLength          = 0;
 
     for (MTOCDPropertyLine *line in self.typeLines) {
         columnMask |= line.columnMask;
+        if (line.readingTypeLength > maxReadingTypeLength) {
+            maxReadingTypeLength = line.readingTypeLength;
+        }
         if (line.storageTypeLength > maxStorageTypeLength) {
             maxStorageTypeLength = line.storageTypeLength;
         }
         if (line.propertyTypeLength > maxPropertyTypeLength) {
             maxPropertyTypeLength = line.propertyTypeLength;
         }
-        if (line.readingTypeLength > maxReadingTypeLength) {
-            maxReadingTypeLength = line.readingTypeLength;
-        }
     }
 
     for (MTOCDPropertyLine *line in self.typeLines) {
         line.alignedColumnMask        	= columnMask;
         line.alignedStorageTypeLength 	= maxStorageTypeLength;
-        line.alignedPropertyTypeLength  = maxPropertyTypeLength;
         line.alignedReadingTypeLength   = maxReadingTypeLength;
+        line.alignedPropertyTypeLength  = maxPropertyTypeLength;
     }
 }
 
