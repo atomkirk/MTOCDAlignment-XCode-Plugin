@@ -25,7 +25,8 @@
 
 - (void)addLine:(MTOCDLine *)line
 {
-    [_lines addObject:line];
+    line.paragraph = self;
+    [(NSMutableArray *)_lines addObject:line];
 
     // if this is not a generic line
     if (![line isMemberOfClass:[MTOCDLine class]]) {

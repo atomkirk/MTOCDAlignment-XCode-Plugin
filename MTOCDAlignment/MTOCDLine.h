@@ -9,6 +9,10 @@
 #import "MTOCDLining.h"
 
 
+@class MTOCDParagraph;
+
+
 @interface MTOCDLine : NSObject <MTOCDLining>
+@property (nonatomic, assign) MTOCDParagraph *paragraph;
 - (NSInteger)length;
 @end

@@ -23,7 +23,7 @@
 
 + (BOOL)lineConforms:(NSString *)line
 {
-    return [line rangeOfPattern:@"^[a-zA-Z0-9\\*\\s\\+\\-/|%&!_@\\.]+?="].location != NSNotFound;
+    return [line rangeOfPattern:@"^.*?="].location != NSNotFound;
 }
 
 + (Class)paragraphClass
@@ -61,14 +61,17 @@
     if (range.location != NSNotFound) {
 
         // before
-        _beforeEquals = [self.contents substringToIndex:range.length];
-        _beforeEquals = [_beforeEquals stringByReplacingPattern:@"\\s*?=" withTemplate:@" "];
+        _beforeEquals       = [self.contents substringToIndex:range.length - 1];
+        unichar lastChar    = [_beforeEquals characterAtIndex:[_beforeEquals length] - 1];
 
         // shortcut symbol
-        unichar lastChar = [_beforeEquals characterAtIndex:[_beforeEquals length] - 1];
-        if ([[NSCharacterSet symbolCharacterSet] characterIsMember:lastChar]) {
-            _shorthandSymbol = [NSString stringWithFormat:@"%c", lastChar];
+        NSCharacterSet *shortcutSymbolsSet = [NSCharacterSet characterSetWithCharactersInString:@"-+^&/*%!|"];
+        if ([shortcutSymbolsSet characterIsMember:lastChar]) {
+            _shorthandSymbol    = [NSString stringWithFormat:@"%c", lastChar];
+            _beforeEquals       = [_beforeEquals stringByReplacingOccurrencesOfString:_shorthandSymbol withString:@" "];
         }
+        _beforeEquals = [_beforeEquals stringByReplacingPattern:@"\\s*?$" withTemplate:@""];
+        _beforeEquals = [_beforeEquals stringByAppendingString:@" "];
 
         // after (might have a chained reaction)
         _afterEquals = [self.contents substringFromIndex:range.length];

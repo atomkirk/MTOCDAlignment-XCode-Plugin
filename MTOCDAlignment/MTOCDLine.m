@@ -103,6 +103,9 @@
 
 - (void)parseComments
 {
+    // if this line is nothing but a comment, just leave it alone
+    if ([self.originalLine matchesPattern:@"^\\s*?\\/\\/"]) return;
+
     NSMutableArray *comments = [NSMutableArray array];
 
     // strip off the easy double slash that must be at the end of the line

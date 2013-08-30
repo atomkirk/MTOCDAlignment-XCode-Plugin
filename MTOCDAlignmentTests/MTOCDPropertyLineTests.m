@@ -6,8 +6,13 @@
 //  Copyright (c) 2013 Mysterious Trousers. All rights reserved.
 //
 
-#import "MTOCDPropertyLineTests.h"
+#import <XCTest/XCTest.h>
 #import "MTOCDAligner.h"
+
+
+@interface MTOCDPropertyLineTests : XCTestCase
+@end
+
 
 @implementation MTOCDPropertyLineTests
 
@@ -22,7 +27,7 @@
     NSString *expectedResult = @"\
 @property (nonatomic, strong) NSString *string;";
 
-    STAssertTrue([result isEqualToString:expectedResult], nil);
+    XCTAssertTrue([result isEqualToString:expectedResult]);
 }
 
 
@@ -42,7 +47,7 @@
 @property (nonatomic, strong) NSString  *string;\n\
 @property (nonatomic, assign) NSInteger count;";
 
-    STAssertTrue([result isEqualToString:expectedResult], nil);
+    XCTAssertTrue([result isEqualToString:expectedResult]);
 }
 
 
@@ -68,7 +73,7 @@
 @property (nonatomic, assign)          NSInteger test;\n\
 @property (nonatomic, assign)          NSSSet    *apples;";
 
-    STAssertTrue([result isEqualToString:expectedResult], nil);
+    XCTAssertTrue([result isEqualToString:expectedResult]);
 }
 
 
@@ -94,7 +99,7 @@
 @property (nonatomic, assign          )          NSInteger test;\n\
 @property (nonatomic, assign          )          NSSSet    *apples;";
 
-    STAssertTrue([result isEqualToString:expectedResult], nil);
+    XCTAssertTrue([result isEqualToString:expectedResult]);
 }
 
 
@@ -122,7 +127,7 @@
 @property (nonatomic, assign          )          NSInteger test;\n\
 @property (nonatomic, assign          )          NSSSet    *apples;";
 
-    STAssertTrue([result isEqualToString:expectedResult], nil);
+    XCTAssertTrue([result isEqualToString:expectedResult]);
 }
 
 
@@ -148,7 +153,7 @@
 @property (nonatomic, assign           )          NSInteger test;\n\
 @property (nonatomic, assign           )          NSSSet    *apples;";
 
-    STAssertTrue([result isEqualToString:expectedResult], nil);
+    XCTAssertTrue([result isEqualToString:expectedResult]);
 }
 
 
@@ -174,7 +179,7 @@
 @property (nonatomic, assign, readonly )          NSInteger test;\n\
 @property (nonatomic, assign           )          NSSSet    *apples;";
 
-    STAssertTrue([result isEqualToString:expectedResult], nil);
+    XCTAssertTrue([result isEqualToString:expectedResult]);
 }
 
 
@@ -200,7 +205,7 @@
 @property (nonatomic, assign, readonly )          NSInteger test;\n\
 @property (nonatomic, assign           )          NSSSet    *apples;";
 
-    STAssertTrue([result isEqualToString:expectedResult], nil);
+    XCTAssertTrue([result isEqualToString:expectedResult]);
 }
 
 
@@ -226,7 +231,7 @@
 @property (nonatomic, assign, readonly )          NSInteger test;\n\
 @property (nonatomic, assign           )          NSSSet    *apples;";
 
-    STAssertTrue([result isEqualToString:expectedResult], nil);
+    XCTAssertTrue([result isEqualToString:expectedResult]);
 }
 
 
@@ -250,7 +255,7 @@
 @property (nonatomic, assign           )          NSInteger test;\n\
 @property (nonatomic, copy             )          NSSSet    *apples;";
 
-    STAssertTrue([result isEqualToString:expectedResult], nil);
+    XCTAssertTrue([result isEqualToString:expectedResult]);
 }
 
 
@@ -275,7 +280,7 @@
 @property (nonatomic, assign           )          NSInteger test;       // how about one more\n\
 @property (nonatomic, copy             )          NSSSet    *apples;";
 
-    STAssertTrue([result isEqualToString:expectedResult], nil);
+    XCTAssertTrue([result isEqualToString:expectedResult]);
 }
 
 - (void)testPropertyAlignmentCommasAtEndOfQualifiers
@@ -305,7 +310,29 @@
 @property (nonatomic, copy,   readonly) NSOrderedSet *companies;            // Array of FHCompany objects\n\
 @property (nonatomic, strong          ) FHCompany    *currentCompany;";
 
-    STAssertTrue([result isEqualToString:expectedResult], nil);
+    XCTAssertTrue([result isEqualToString:expectedResult]);
+}
+
+- (void)testPropertyAlignmentHasDelegateProtocolBrackets
+{
+    NSString *testString = @"\
+@property (strong, nonatomic) id<FMInteractionNewResponseCellDelegate>    delegate;\n\
+@property (strong, nonatomic) FHInteraction                               *interaction;\n\
+//@property (strong, nonatomic) IBOutlet TUITextView                        *responseTextView;\n\
+@property (strong, nonatomic) TUIViewNSViewContainer                        *nsViewContainer;\n\
+@property (strong, nonatomic) IBOutlet NSTextView                           *responseTextView;";
+
+    MTOCDAligner *aligner = [MTOCDAligner new];
+    NSString *result = [aligner alignedString:testString];
+
+    NSString *expectedResult = @"\
+@property (nonatomic, strong)          id<FMInteractionNewResponseCellDelegate> delegate;\n\
+@property (nonatomic, strong)          FHInteraction                            *interaction;\n\
+//@property (strong, nonatomic) IBOutlet TUITextView                        *responseTextView;\n\
+@property (nonatomic, strong)          TUIViewNSViewContainer                   *nsViewContainer;\n\
+@property (nonatomic, strong) IBOutlet NSTextView                               *responseTextView;";
+    
+    XCTAssertTrue([result isEqualToString:expectedResult]);
 }
 
 @end

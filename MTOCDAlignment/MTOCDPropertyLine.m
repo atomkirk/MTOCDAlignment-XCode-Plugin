@@ -39,7 +39,7 @@ static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitm
 
 + (BOOL)lineConforms:(NSString *)line
 {
-    return [line matchesPattern:@"\\@property"];
+    return [line matchesPattern:@"^(\\s*?)\\@property"];
 }
 
 + (Class)paragraphClass
@@ -126,11 +126,10 @@ static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitm
     NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:@",@() "];
     self.words = [self.contents componentsSeparatedByCharactersInSet:charSet];
 
-    NSLog(@"%@", self.words);
-
     NSMutableArray *words = [NSMutableArray array];
     for (NSString *word in self.words) {
-        NSString *cleanWord = [word stringByTrimmingCharactersInSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]];
+        NSCharacterSet *stripCharSet    = [NSCharacterSet characterSetWithCharactersInString:@"* ;"];
+        NSString *cleanWord             = [word stringByTrimmingCharactersInSet:stripCharSet];
         [words addObject:cleanWord];
     }
 

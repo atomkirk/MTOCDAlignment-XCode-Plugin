@@ -10,6 +10,6 @@
 
 
 @interface MTOCDParagraph ()
-@property (nonatomic, retain) NSMutableArray *lines;
-@property (nonatomic, retain) NSMutableArray *typeLines;
+@property (nonatomic, retain, readwrite) NSArray        *lines;
+@property (nonatomic, retain           ) NSMutableArray *typeLines;
 @end

@@ -11,6 +11,8 @@
 #import "MTOCDPropertyParagraph.h"
 #import "MTOCDAssignmentLine.h"
 #import "MTOCDAssignmentParagraph.h"
+#import "MTOCDDeclarationLine.h"
+#import "MTOCDDeclarationParagraph.h"
 
 
 @interface MTOCDAligner ()
@@ -72,6 +74,7 @@
 {
     return @[[MTOCDPropertyLine class],
              [MTOCDAssignmentLine class],
+             [MTOCDDeclarationLine class],
              [MTOCDLine class]]; // this must always be last, cause any line conforms
 }
 

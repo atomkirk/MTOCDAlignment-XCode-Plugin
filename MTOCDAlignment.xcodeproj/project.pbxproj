@@ -11,19 +11,24 @@
 		C20E39B6176D1EB300901512 /* MTOCDAssignmentLine.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E39B5176D1EB300901512 /* MTOCDAssignmentLine.m */; };
 		C20E39BA176D20E700901512 /* MTOCDAssignmentParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E39B9176D20E700901512 /* MTOCDAssignmentParagraph.m */; };
 		C20E39BD176D20FB00901512 /* MTOCDPropertyParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E39BC176D20FB00901512 /* MTOCDPropertyParagraph.m */; };
-		C28AD63B176FD0FA006B8EC6 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C28AD63A176FD0FA006B8EC6 /* SenTestingKit.framework */; };
+		C254681B17D0E07E001AD25A /* MTOCDAlignment.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DBC103176CFC8F00073F74 /* MTOCDAlignment.m */; };
+		C254681C17D0E07E001AD25A /* MTOCDAligner.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E83D77176D0597001FA3AE /* MTOCDAligner.m */; };
+		C254681D17D0E07E001AD25A /* MTOCDParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E39B2176D1E7800901512 /* MTOCDParagraph.m */; };
+		C254681E17D0E07E001AD25A /* MTOCDPropertyParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E39BC176D20FB00901512 /* MTOCDPropertyParagraph.m */; };
+		C254681F17D0E07E001AD25A /* MTOCDAssignmentParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E39B9176D20E700901512 /* MTOCDAssignmentParagraph.m */; };
+		C254682017D0E07E001AD25A /* MTOCDDeclarationParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B58AE917D0DC37007B12DD /* MTOCDDeclarationParagraph.m */; };
+		C254682117D0E07E001AD25A /* MTOCDLine.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E83D7E176D0A73001FA3AE /* MTOCDLine.m */; };
+		C254682217D0E07E001AD25A /* MTOCDPropertyLine.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E83D7B176D081F001FA3AE /* MTOCDPropertyLine.m */; };
+		C254682317D0E07E001AD25A /* MTOCDAssignmentLine.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E39B5176D1EB300901512 /* MTOCDAssignmentLine.m */; };
+		C254682417D0E07E001AD25A /* MTOCDDeclarationLine.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B58AEC17D0DC56007B12DD /* MTOCDDeclarationLine.m */; };
+		C254682517D0E07E001AD25A /* NSString+Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BB01C7176D7A9C00293E3E /* NSString+Regex.m */; };
 		C28AD63C176FD0FA006B8EC6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2DBC0F0176CFAEF00073F74 /* Cocoa.framework */; };
 		C28AD642176FD0FA006B8EC6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C28AD640176FD0FA006B8EC6 /* InfoPlist.strings */; };
 		C28AD645176FD0FA006B8EC6 /* MTOCDPropertyLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C28AD644176FD0FA006B8EC6 /* MTOCDPropertyLineTests.m */; };
-		C28AD64C176FD1F7006B8EC6 /* MTOCDAligner.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E83D77176D0597001FA3AE /* MTOCDAligner.m */; };
-		C28AD64D176FD204006B8EC6 /* MTOCDParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E39B2176D1E7800901512 /* MTOCDParagraph.m */; };
-		C28AD64E176FD204006B8EC6 /* MTOCDPropertyParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E39BC176D20FB00901512 /* MTOCDPropertyParagraph.m */; };
-		C28AD64F176FD204006B8EC6 /* MTOCDAssignmentParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E39B9176D20E700901512 /* MTOCDAssignmentParagraph.m */; };
-		C28AD650176FD204006B8EC6 /* MTOCDLine.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E83D7E176D0A73001FA3AE /* MTOCDLine.m */; };
-		C28AD651176FD204006B8EC6 /* MTOCDPropertyLine.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E83D7B176D081F001FA3AE /* MTOCDPropertyLine.m */; };
-		C28AD652176FD204006B8EC6 /* MTOCDAssignmentLine.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E39B5176D1EB300901512 /* MTOCDAssignmentLine.m */; };
-		C28AD653176FD204006B8EC6 /* NSString+Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BB01C7176D7A9C00293E3E /* NSString+Regex.m */; };
 		C28AD6561770ABD2006B8EC6 /* MTOCDAlignmentLineTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C28AD6551770ABD2006B8EC6 /* MTOCDAlignmentLineTest.m */; };
+		C2B58AEA17D0DC37007B12DD /* MTOCDDeclarationParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B58AE917D0DC37007B12DD /* MTOCDDeclarationParagraph.m */; };
+		C2B58AED17D0DC56007B12DD /* MTOCDDeclarationLine.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B58AEC17D0DC56007B12DD /* MTOCDDeclarationLine.m */; };
+		C2B58AEF17D0DC80007B12DD /* MTOCDIvarLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B58AEE17D0DC80007B12DD /* MTOCDIvarLineTests.m */; };
 		C2BB01C8176D7A9C00293E3E /* NSString+Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BB01C7176D7A9C00293E3E /* NSString+Regex.m */; };
 		C2DBC0F1176CFAEF00073F74 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2DBC0F0176CFAEF00073F74 /* Cocoa.framework */; };
 		C2DBC0FB176CFAEF00073F74 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2DBC0F9176CFAEF00073F74 /* InfoPlist.strings */; };
@@ -32,16 +37,6 @@
 		C2E83D7C176D081F001FA3AE /* MTOCDPropertyLine.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E83D7B176D081F001FA3AE /* MTOCDPropertyLine.m */; };
 		C2E83D7F176D0A73001FA3AE /* MTOCDLine.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E83D7E176D0A73001FA3AE /* MTOCDLine.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		C28AD64A176FD137006B8EC6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C2DBC0E5176CFAEF00073F74 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C2DBC0EC176CFAEF00073F74;
-			remoteInfo = MTOCDAlignment;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		C20E39B1176D1E7800901512 /* MTOCDParagraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTOCDParagraph.h; sourceTree = "<group>"; };
@@ -53,15 +48,18 @@
 		C20E39BB176D20FB00901512 /* MTOCDPropertyParagraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTOCDPropertyParagraph.h; sourceTree = "<group>"; };
 		C20E39BC176D20FB00901512 /* MTOCDPropertyParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOCDPropertyParagraph.m; sourceTree = "<group>"; };
 		C20E39BE176D268600901512 /* MTOCDParagraph+Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MTOCDParagraph+Protected.h"; sourceTree = "<group>"; };
-		C28AD639176FD0FA006B8EC6 /* MTOCDAlignmentTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MTOCDAlignmentTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C28AD63A176FD0FA006B8EC6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		C254681717D0DFE3001AD25A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		C28AD639176FD0FA006B8EC6 /* MTOCDAlignmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MTOCDAlignmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C28AD63F176FD0FA006B8EC6 /* MTOCDAlignmentTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MTOCDAlignmentTests-Info.plist"; sourceTree = "<group>"; };
 		C28AD641176FD0FA006B8EC6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C28AD643176FD0FA006B8EC6 /* MTOCDPropertyLineTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTOCDPropertyLineTests.h; sourceTree = "<group>"; };
 		C28AD644176FD0FA006B8EC6 /* MTOCDPropertyLineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTOCDPropertyLineTests.m; sourceTree = "<group>"; };
 		C28AD646176FD0FA006B8EC6 /* MTOCDAlignmentTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MTOCDAlignmentTests-Prefix.pch"; sourceTree = "<group>"; };
-		C28AD6541770ABD2006B8EC6 /* MTOCDAlignmentLineTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTOCDAlignmentLineTest.h; sourceTree = "<group>"; };
 		C28AD6551770ABD2006B8EC6 /* MTOCDAlignmentLineTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOCDAlignmentLineTest.m; sourceTree = "<group>"; };
+		C2B58AE817D0DC37007B12DD /* MTOCDDeclarationParagraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTOCDDeclarationParagraph.h; sourceTree = "<group>"; };
+		C2B58AE917D0DC37007B12DD /* MTOCDDeclarationParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOCDDeclarationParagraph.m; sourceTree = "<group>"; };
+		C2B58AEB17D0DC56007B12DD /* MTOCDDeclarationLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTOCDDeclarationLine.h; sourceTree = "<group>"; };
+		C2B58AEC17D0DC56007B12DD /* MTOCDDeclarationLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOCDDeclarationLine.m; sourceTree = "<group>"; };
+		C2B58AEE17D0DC80007B12DD /* MTOCDIvarLineTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOCDIvarLineTests.m; sourceTree = "<group>"; };
 		C2BB01C6176D7A9C00293E3E /* NSString+Regex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Regex.h"; sourceTree = "<group>"; };
 		C2BB01C7176D7A9C00293E3E /* NSString+Regex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Regex.m"; sourceTree = "<group>"; };
 		C2DBC0ED176CFAEF00073F74 /* MTOCDAlignment.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MTOCDAlignment.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,7 +87,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C28AD63B176FD0FA006B8EC6 /* SenTestingKit.framework in Frameworks */,
 				C28AD63C176FD0FA006B8EC6 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,6 +112,8 @@
 				C20E39BC176D20FB00901512 /* MTOCDPropertyParagraph.m */,
 				C20E39B8176D20E700901512 /* MTOCDAssignmentParagraph.h */,
 				C20E39B9176D20E700901512 /* MTOCDAssignmentParagraph.m */,
+				C2B58AE817D0DC37007B12DD /* MTOCDDeclarationParagraph.h */,
+				C2B58AE917D0DC37007B12DD /* MTOCDDeclarationParagraph.m */,
 			);
 			name = "Paragraph Types";
 			sourceTree = "<group>";
@@ -122,10 +121,9 @@
 		C28AD63D176FD0FA006B8EC6 /* MTOCDAlignmentTests */ = {
 			isa = PBXGroup;
 			children = (
-				C28AD643176FD0FA006B8EC6 /* MTOCDPropertyLineTests.h */,
 				C28AD644176FD0FA006B8EC6 /* MTOCDPropertyLineTests.m */,
-				C28AD6541770ABD2006B8EC6 /* MTOCDAlignmentLineTest.h */,
 				C28AD6551770ABD2006B8EC6 /* MTOCDAlignmentLineTest.m */,
+				C2B58AEE17D0DC80007B12DD /* MTOCDIvarLineTests.m */,
 				C28AD63E176FD0FA006B8EC6 /* Supporting Files */,
 			);
 			path = MTOCDAlignmentTests;
@@ -164,7 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				C2DBC0ED176CFAEF00073F74 /* MTOCDAlignment.xcplugin */,
-				C28AD639176FD0FA006B8EC6 /* MTOCDAlignmentTests.octest */,
+				C28AD639176FD0FA006B8EC6 /* MTOCDAlignmentTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,8 +170,8 @@
 		C2DBC0EF176CFAEF00073F74 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C254681717D0DFE3001AD25A /* XCTest.framework */,
 				C2DBC0F0176CFAEF00073F74 /* Cocoa.framework */,
-				C28AD63A176FD0FA006B8EC6 /* SenTestingKit.framework */,
 				C2DBC0F2176CFAEF00073F74 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -225,6 +223,8 @@
 				C2E83D7B176D081F001FA3AE /* MTOCDPropertyLine.m */,
 				C20E39B4176D1EB300901512 /* MTOCDAssignmentLine.h */,
 				C20E39B5176D1EB300901512 /* MTOCDAssignmentLine.m */,
+				C2B58AEB17D0DC56007B12DD /* MTOCDDeclarationLine.h */,
+				C2B58AEC17D0DC56007B12DD /* MTOCDDeclarationLine.m */,
 			);
 			name = "Line Types";
 			sourceTree = "<group>";
@@ -244,12 +244,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				C28AD64B176FD137006B8EC6 /* PBXTargetDependency */,
 			);
 			name = MTOCDAlignmentTests;
 			productName = MTOCDAlignmentTests;
-			productReference = C28AD639176FD0FA006B8EC6 /* MTOCDAlignmentTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = C28AD639176FD0FA006B8EC6 /* MTOCDAlignmentTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		C2DBC0EC176CFAEF00073F74 /* MTOCDAlignment */ = {
 			isa = PBXNativeTarget;
@@ -274,7 +273,7 @@
 		C2DBC0E5176CFAEF00073F74 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Mysterious Trousers";
 			};
 			buildConfigurationList = C2DBC0E8176CFAEF00073F74 /* Build configuration list for PBXProject "MTOCDAlignment" */;
@@ -335,15 +334,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C254681B17D0E07E001AD25A /* MTOCDAlignment.m in Sources */,
+				C254681C17D0E07E001AD25A /* MTOCDAligner.m in Sources */,
+				C254681D17D0E07E001AD25A /* MTOCDParagraph.m in Sources */,
+				C254681E17D0E07E001AD25A /* MTOCDPropertyParagraph.m in Sources */,
+				C254681F17D0E07E001AD25A /* MTOCDAssignmentParagraph.m in Sources */,
+				C254682017D0E07E001AD25A /* MTOCDDeclarationParagraph.m in Sources */,
+				C254682117D0E07E001AD25A /* MTOCDLine.m in Sources */,
+				C254682217D0E07E001AD25A /* MTOCDPropertyLine.m in Sources */,
+				C254682317D0E07E001AD25A /* MTOCDAssignmentLine.m in Sources */,
+				C254682417D0E07E001AD25A /* MTOCDDeclarationLine.m in Sources */,
+				C254682517D0E07E001AD25A /* NSString+Regex.m in Sources */,
 				C28AD645176FD0FA006B8EC6 /* MTOCDPropertyLineTests.m in Sources */,
-				C28AD64C176FD1F7006B8EC6 /* MTOCDAligner.m in Sources */,
-				C28AD64D176FD204006B8EC6 /* MTOCDParagraph.m in Sources */,
-				C28AD64E176FD204006B8EC6 /* MTOCDPropertyParagraph.m in Sources */,
-				C28AD64F176FD204006B8EC6 /* MTOCDAssignmentParagraph.m in Sources */,
-				C28AD650176FD204006B8EC6 /* MTOCDLine.m in Sources */,
-				C28AD651176FD204006B8EC6 /* MTOCDPropertyLine.m in Sources */,
-				C28AD652176FD204006B8EC6 /* MTOCDAssignmentLine.m in Sources */,
-				C28AD653176FD204006B8EC6 /* NSString+Regex.m in Sources */,
+				C2B58AEF17D0DC80007B12DD /* MTOCDIvarLineTests.m in Sources */,
 				C28AD6561770ABD2006B8EC6 /* MTOCDAlignmentLineTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,25 +357,19 @@
 			files = (
 				C2DBC104176CFC8F00073F74 /* MTOCDAlignment.m in Sources */,
 				C2E83D78176D0597001FA3AE /* MTOCDAligner.m in Sources */,
+				C2B58AEA17D0DC37007B12DD /* MTOCDDeclarationParagraph.m in Sources */,
 				C2E83D7C176D081F001FA3AE /* MTOCDPropertyLine.m in Sources */,
 				C2E83D7F176D0A73001FA3AE /* MTOCDLine.m in Sources */,
 				C20E39B3176D1E7800901512 /* MTOCDParagraph.m in Sources */,
 				C20E39B6176D1EB300901512 /* MTOCDAssignmentLine.m in Sources */,
 				C20E39BA176D20E700901512 /* MTOCDAssignmentParagraph.m in Sources */,
+				C2B58AED17D0DC56007B12DD /* MTOCDDeclarationLine.m in Sources */,
 				C20E39BD176D20FB00901512 /* MTOCDPropertyParagraph.m in Sources */,
 				C2BB01C8176D7A9C00293E3E /* NSString+Regex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C28AD64B176FD137006B8EC6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C2DBC0EC176CFAEF00073F74 /* MTOCDAlignment */;
-			targetProxy = C28AD64A176FD137006B8EC6 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C28AD640176FD0FA006B8EC6 /* InfoPlist.strings */ = {
