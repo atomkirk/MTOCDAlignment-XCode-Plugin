@@ -14,9 +14,9 @@
 
 @implementation MTOCDAssignmentParagraph
 
-- (void)processLines
+- (void)parseLines
 {
-    [super processLines];
+    [super parseLines];
     
     NSInteger maxColumn = 0;
     for (MTOCDAssignmentLine *line in self.typeLines) {

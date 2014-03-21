@@ -34,18 +34,42 @@
     }
 }
 
-- (void)processLines
+- (void)preProcessLines
+{
+    for (MTOCDLine *line in _lines) {
+        [line preProcess];
+    }
+}
+
+- (void)parseLines
 {
     for (MTOCDLine *line in _lines) {
         [line parse];
     }
 }
 
+- (void)formatLines
+{
+    for (MTOCDLine *line in _lines) {
+        [line format];
+    }
+}
+
+- (void)postProcessLines
+{
+    [self calculateCommentColumn];
+
+    for (MTOCDLine *line in _lines) {
+        [line postProcess];
+    }
+}
+
 - (NSString *)description
 {
-    [self processLines];
+    [self preProcessLines];
+    [self parseLines];
     [self formatLines];
-    [self postFormatLines];
+    [self postProcessLines];
     return [_lines componentsJoinedByString:@"\n"];
 }
 
@@ -69,20 +93,5 @@
     }
 }
 
-- (void)formatLines
-{
-    for (MTOCDLine *line in _lines) {
-        [line format];
-    }
-}
-
-- (void)postFormatLines
-{
-    [self calculateCommentColumn];
-
-    for (MTOCDLine *line in _lines) {
-        [line postFormat];
-    }
-}
 
 @end

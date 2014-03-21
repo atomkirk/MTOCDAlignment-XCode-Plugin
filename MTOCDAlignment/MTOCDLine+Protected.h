@@ -9,14 +9,15 @@
 #import "MTOCDLine.h"
 
 @interface MTOCDLine ()
-@property (nonatomic, retain) NSString *contents;
-@property (nonatomic, retain) NSString *originalLine;
-@property (nonatomic, retain) NSArray *words;
-@property (nonatomic, retain) NSArray *comments;
+@property (nonatomic, strong) NSString *contents;
+@property (nonatomic, strong) NSString *originalLine;
+@property (nonatomic, strong) NSArray *words;
+@property (nonatomic, strong) NSArray *comments;
 @property (nonatomic, assign) NSInteger alignedCommentColumn;
 - (void)parse;
 - (void)format;
-- (void)postFormat;
+- (void)preProcess;
+- (void)postProcess;
 - (NSString *)commentsString;
 + (NSUInteger)tabAlignedColumnWithColumn:(NSUInteger)column;
 @end

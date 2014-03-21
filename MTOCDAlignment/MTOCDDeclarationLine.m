@@ -13,8 +13,8 @@
 
 
 @interface MTOCDDeclarationLine ()
-@property (nonatomic, retain) NSString *type;
-@property (nonatomic, retain) NSString *name;
+@property (nonatomic, strong) NSString *type;
+@property (nonatomic, strong) NSString *name;
 @end
 
 

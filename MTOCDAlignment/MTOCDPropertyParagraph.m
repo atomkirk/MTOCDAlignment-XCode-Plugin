@@ -13,14 +13,15 @@
 
 @implementation MTOCDPropertyParagraph
 
-- (void)processLines
+- (void)parseLines
 {
-    [super processLines];
+    [super parseLines];
 
     MTOCDPropertyLineColumnMask columnMask  = 0;
     NSInteger maxReadingTypeLength          = 0;
     NSInteger maxStorageTypeLength          = 0;
     NSInteger maxPropertyTypeLength         = 0;
+    NSInteger maxOverrideTypeLength         = 0;
 
     for (MTOCDPropertyLine *line in self.typeLines) {
         columnMask |= line.columnMask;
@@ -33,6 +34,9 @@
         if (line.propertyTypeLength > maxPropertyTypeLength) {
             maxPropertyTypeLength = line.propertyTypeLength;
         }
+        if (line.overrideLength > maxOverrideTypeLength) {
+            maxOverrideTypeLength = line.overrideLength;
+        }
     }
 
     for (MTOCDPropertyLine *line in self.typeLines) {
@@ -40,6 +44,7 @@
         line.alignedStorageTypeLength 	= maxStorageTypeLength;
         line.alignedReadingTypeLength   = maxReadingTypeLength;
         line.alignedPropertyTypeLength  = maxPropertyTypeLength;
+        line.alignedOverrideLength      = maxOverrideTypeLength;
     }
 }
 

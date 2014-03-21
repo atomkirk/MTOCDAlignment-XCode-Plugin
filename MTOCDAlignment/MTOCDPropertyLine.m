@@ -13,14 +13,18 @@
 
 
 static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitmask & value) == value; }
+static NSString *blockDeclarationPlaceholder = @"<<block>>";
 
 
 @interface MTOCDPropertyLine ()
-@property (nonatomic, assign)          BOOL     isPointer;
-@property (nonatomic, retain)          NSString *readingType;
-@property (nonatomic, retain)          NSString *storageType;
-@property (nonatomic, retain) IBOutlet NSString *propertyType;
-@property (nonatomic, retain)          NSString *propertyName;
+@property (nonatomic, assign) BOOL     isPointer;
+@property (nonatomic, strong) NSString *readingType;
+@property (nonatomic, strong) NSString *storageType;
+@property (nonatomic, strong) NSString *propertyType;
+@property (nonatomic, strong) NSString *propertyName;
+@property (nonatomic, strong) NSString *getterOverride;
+@property (nonatomic, strong) NSString *setterOverride;
+@property (nonatomic, strong) NSString *blockDeclaration;
 @end
 
 
@@ -37,6 +41,10 @@ static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitm
     return self;
 }
 
+
+
+#pragma mark - Overrides
+
 + (BOOL)lineConforms:(NSString *)line
 {
     return [line matchesPattern:@"^(\\s*?)\\@property"];
@@ -51,9 +59,7 @@ static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitm
 {
     NSMutableArray *string = [NSMutableArray new];
 
-
     [string addObject:@"@property"];
-
 
     NSMutableArray *qualifiers = [NSMutableArray new];
     if (isInMask(_alignedColumnMask, MTOCDPropertyLineColumnMaskNonatomic)) {
@@ -74,6 +80,13 @@ static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitm
         [qualifiers addObject:s];
     }
 
+    if (isInMask(_alignedColumnMask, MTOCDPropertyLineColumnMaskGetter)) {
+        NSString *s = [[self overrideString] stringByPaddingToLength:_alignedOverrideLength
+                                                          withString:@" "
+                                                     startingAtIndex:0];
+        [qualifiers addObject:s];
+    }
+
     NSString *qualifiersString = [qualifiers componentsJoinedByString:@"  "];
     qualifiersString = [NSString stringWithFormat:@"(%@)", qualifiersString];
     qualifiersString = [qualifiersString stringByReplacingPattern:@"([a-z])\\s(\\s*?)([a-z])" withTemplate:@"$1,$2$3"];
@@ -91,6 +104,11 @@ static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitm
 
     self.contents = [NSString stringWithFormat:@"%@;", [string componentsJoinedByString:@" "]];
 
+    if (self.blockDeclaration) {
+        self.contents = [self.contents stringByReplacingOccurrencesOfString:blockDeclarationPlaceholder
+                                                                 withString:self.blockDeclaration];
+    }
+
     [super format];
 }
 
@@ -98,6 +116,11 @@ static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitm
 {
     return self.contents;
 }
+
+
+
+
+#pragma mark - Public
 
 - (NSInteger)storageTypeLength
 {
@@ -114,16 +137,36 @@ static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitm
     return [_readingType length];
 }
 
+- (NSInteger)overrideLength
+{
+    return [[self compiledOverrideString] length];
+}
+
 
 
 
 #pragma mark - Protected
 
+- (void)preProcess
+{
+    // get rid of spaces around "=" in getter/setter overrides
+    self.contents = [self.contents stringByReplacingPattern:@"(\\s*?)=(\\s*)" withTemplate:@"="];
+}
+
 - (void)parse
 {
     [super parse];
 
-    NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:@",@() "];
+    // pull out a block declaration
+    NSRange blockRange = [self.contents rangeOfPattern:@"\\(\\^.*?;"];
+    if (blockRange.location != NSNotFound) {
+        NSCharacterSet *trimCharSet = [NSCharacterSet characterSetWithCharactersInString:@" ;"];
+        self.blockDeclaration = [[self.contents substringWithRange:blockRange] stringByTrimmingCharactersInSet:trimCharSet];
+        self.contents = [self.contents stringByReplacingCharactersInRange:blockRange withString:blockDeclarationPlaceholder];
+    }
+
+    // get the property keywords
+    NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:@",@() "];;
     self.words = [self.contents componentsSeparatedByCharactersInSet:charSet];
 
     NSMutableArray *words = [NSMutableArray array];
@@ -193,6 +236,20 @@ static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitm
             _columnMask |= MTOCDPropertyLineColumnMaskOutlet;
             [words removeObject:word];
         }
+
+        // getter/setter overrides
+        NSArray *sides = [word componentsSeparatedByString:@"="];
+        if ([sides count] == 2) {
+            if ([sides[0] isEqualToString:@"getter"]) {
+                _getterOverride = sides[1];
+            }
+            else if ([sides[0] isEqualToString:@"setter"]) {
+                _setterOverride = sides[1];
+            }
+            _columnMask |= MTOCDPropertyLineColumnMaskGetter;
+            [words removeObject:word];
+        }
+
     }
 
     // pointer
@@ -227,6 +284,12 @@ static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitm
     return isInMask(_columnMask, MTOCDPropertyLineColumnMaskStorageType) ? _storageType : [self emptyStringOfLength:_alignedStorageTypeLength];
 }
 
+- (NSString *)overrideString
+{
+    NSString *string = [self compiledOverrideString];
+    return isInMask(_columnMask, MTOCDPropertyLineColumnMaskGetter) ? string : [self emptyStringOfLength:[string length]];
+}
+
 - (NSString *)outletString
 {
     NSString *s = @"IBOutlet";
@@ -249,6 +312,13 @@ static inline BOOL isInMask(NSUInteger bitmask, NSUInteger value) { return (bitm
 - (NSString *)emptyStringOfLength:(NSInteger)length
 {
     return [@"" stringByPaddingToLength:length withString:@" " startingAtIndex:0];
+}
+
+- (NSString *)compiledOverrideString
+{
+    NSString *left      = _getterOverride ? @"getter" : @"setter";
+    NSString *right     = _getterOverride ? _getterOverride : _setterOverride;
+    return [NSString stringWithFormat:@"%@=%@", left, right];
 }
 
 

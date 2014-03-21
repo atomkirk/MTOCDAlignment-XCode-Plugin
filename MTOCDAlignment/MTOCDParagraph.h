@@ -10,7 +10,10 @@
 
 
 @interface MTOCDParagraph : NSObject
-@property (nonatomic, retain, readonly) NSArray *lines;
+@property (nonatomic, strong, readonly) NSArray *lines;
 - (void)addLine:(MTOCDLine *)line;
-- (void)processLines;
+- (void)preProcessLines;
+- (void)parseLines;
+- (void)formatLines;
+- (void)postProcessLines;
 @end

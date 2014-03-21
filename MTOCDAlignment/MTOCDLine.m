@@ -47,7 +47,11 @@
 {
 }
 
-- (void)postFormat
+- (void)preProcess
+{
+}
+
+- (void)postProcess
 {
     // append comments
     if ([_comments count] > 0) {

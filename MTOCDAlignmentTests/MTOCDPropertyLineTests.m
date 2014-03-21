@@ -335,4 +335,50 @@
     XCTAssertTrue([result isEqualToString:expectedResult]);
 }
 
+- (void)testPropertyAlignmentHasGetterSetterOverrides
+{
+    NSString *testString = @"\
+@property (strong, nonatomic) id<FMInteractionNewResponseCellDelegate>    delegate;\n\
+@property (strong, nonatomic) FHInteraction                               *interaction;\n\
+//@property (strong, nonatomic) IBOutlet TUITextView                        *responseTextView;\n\
+@property (strong, nonatomic, getter = isNotorious) BOOL                 notorious;\n\
+@property (strong, nonatomic) TUIViewNSViewContainer                        *nsViewContainer;\n\
+@property (strong, nonatomic) IBOutlet NSTextView                           *responseTextView;";
+
+    MTOCDAligner *aligner = [MTOCDAligner new];
+    NSString *result = [aligner alignedString:testString];
+
+    NSString *expectedResult = @"\
+@property (nonatomic, strong                    )          id<FMInteractionNewResponseCellDelegate> delegate;\n\
+@property (nonatomic, strong                    )          FHInteraction                            *interaction;\n\
+//@property (strong, nonatomic) IBOutlet TUITextView                        *responseTextView;\n\
+@property (nonatomic, strong, getter=isNotorious)          BOOL                                     notorious;\n\
+@property (nonatomic, strong                    )          TUIViewNSViewContainer                   *nsViewContainer;\n\
+@property (nonatomic, strong                    ) IBOutlet NSTextView                               *responseTextView;";
+
+    XCTAssertTrue([result isEqualToString:expectedResult]);
+}
+
+- (void)testPropertyAlignmentHasBlockProperty
+{
+    NSString *testString = @"\
+@property (nonatomic, strong) NSMutableArray *steps;\n\
+@property (nonatomic, assign) BOOL drawsAsynchronously;\n\
+@property (nonatomic, copy) void (^completion)(MTPencil *pencil);\n\
+@property (copy, nonatomic) void (^eraseCompletion)(MTPencil *pencil);\n\
+@property (nonatomic, assign) BOOL isDrawing;";
+    MTOCDAligner *aligner = [MTOCDAligner new];
+    NSString *result = [aligner alignedString:testString];
+
+    NSString *expectedResult = @"\
+@property (nonatomic, strong) NSMutableArray *steps;\n\
+@property (nonatomic, assign) BOOL           drawsAsynchronously;\n\
+@property (nonatomic, copy  ) void           (^completion)(MTPencil *pencil);\n\
+@property (nonatomic, copy  ) void           (^eraseCompletion)(MTPencil *pencil);\n\
+@property (nonatomic, assign) BOOL           isDrawing;";
+
+    XCTAssertTrue([result isEqualToString:expectedResult]);
+}
+
+
 @end

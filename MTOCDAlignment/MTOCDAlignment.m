@@ -11,7 +11,7 @@
 
 
 @interface MTOCDAlignment ()
-@property (nonatomic, retain) NSTextView *textView;
+@property (nonatomic, strong) NSTextView *textView;
 @property (nonatomic, assign) NSRange selectedStringRange;
 @property (nonatomic, copy) NSString *selectedStringContent;
 @end
@@ -72,7 +72,7 @@
         NSString *alignedText           = [self alignedString];
 
         [self.textView.undoManager beginUndoGrouping];
-        [self.textView insertText:[self alignedString] replacementRange:_selectedStringRange];
+        [self.textView insertText:alignedText replacementRange:_selectedStringRange];
         [self.textView.undoManager endUndoGrouping];
 
         currentSelectedRange.length = MIN(currentSelectedRange.length, [alignedText length]);
@@ -96,7 +96,7 @@
 	if (editMenuItem) {
 		[[editMenuItem submenu] addItem:[NSMenuItem separatorItem]];
 
-        NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:@"Align Text OCD Style" action:@selector(alignTextOCDStyle:) keyEquivalent:@"a"] autorelease];
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:@"Align Text OCD Style" action:@selector(alignTextOCDStyle:) keyEquivalent:@"a"];
         item.keyEquivalentModifierMask = NSControlKeyMask;
         [item setTarget:self];
         [[editMenuItem submenu] addItem:item];

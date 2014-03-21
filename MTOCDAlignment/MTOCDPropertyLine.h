@@ -14,6 +14,7 @@ typedef NS_OPTIONS(NSUInteger, MTOCDPropertyLineColumnMask) {
     MTOCDPropertyLineColumnMaskReading      = 1 << 1,
     MTOCDPropertyLineColumnMaskStorageType  = 1 << 2,
     MTOCDPropertyLineColumnMaskOutlet       = 1 << 3,
+    MTOCDPropertyLineColumnMaskGetter       = 1 << 4
 };
 
 
@@ -26,4 +27,6 @@ typedef NS_OPTIONS(NSUInteger, MTOCDPropertyLineColumnMask) {
 @property (nonatomic, assign) NSInteger                   alignedPropertyTypeLength;
 @property (nonatomic, assign) NSInteger                   readingTypeLength;
 @property (nonatomic, assign) NSInteger                   alignedReadingTypeLength;
+@property (nonatomic, assign) NSInteger                   overrideLength;
+@property (nonatomic, assign) NSInteger                   alignedOverrideLength;
 @end

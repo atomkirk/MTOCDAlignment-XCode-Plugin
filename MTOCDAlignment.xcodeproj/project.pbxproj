@@ -273,8 +273,13 @@
 		C2DBC0E5176CFAEF00073F74 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Mysterious Trousers";
+				TargetAttributes = {
+					C28AD638176FD0FA006B8EC6 = {
+						TestTargetID = C2DBC0EC176CFAEF00073F74;
+					};
+				};
 			};
 			buildConfigurationList = C2DBC0E8176CFAEF00073F74 /* Build configuration list for PBXProject "MTOCDAlignment" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -394,26 +399,26 @@
 		C28AD647176FD0FA006B8EC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MTOCDAlignmentTests/MTOCDAlignmentTests-Prefix.pch";
 				INFOPLIST_FILE = "MTOCDAlignmentTests/MTOCDAlignmentTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
 		C28AD648176FD0FA006B8EC6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MTOCDAlignmentTests/MTOCDAlignmentTests-Prefix.pch";
 				INFOPLIST_FILE = "MTOCDAlignmentTests/MTOCDAlignmentTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -421,7 +426,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -455,7 +459,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -481,8 +484,9 @@
 		C2DBC100176CFAEF00073F74 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_ENABLE_OBJC_GC = supported;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MTOCDAlignment/MTOCDAlignment-Prefix.pch";
 				INFOPLIST_FILE = "MTOCDAlignment/MTOCDAlignment-Info.plist";
@@ -495,8 +499,9 @@
 		C2DBC101176CFAEF00073F74 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_ENABLE_OBJC_GC = supported;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MTOCDAlignment/MTOCDAlignment-Prefix.pch";
 				INFOPLIST_FILE = "MTOCDAlignment/MTOCDAlignment-Info.plist";
@@ -516,6 +521,7 @@
 				C28AD648176FD0FA006B8EC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C2DBC0E8176CFAEF00073F74 /* Build configuration list for PBXProject "MTOCDAlignment" */ = {
 			isa = XCConfigurationList;

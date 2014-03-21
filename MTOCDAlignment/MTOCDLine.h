@@ -13,6 +13,6 @@
 
 
 @interface MTOCDLine : NSObject <MTOCDLining>
-@property (nonatomic, assign) MTOCDParagraph *paragraph;
+@property (nonatomic, weak) MTOCDParagraph *paragraph;
 - (NSInteger)length;
 @end

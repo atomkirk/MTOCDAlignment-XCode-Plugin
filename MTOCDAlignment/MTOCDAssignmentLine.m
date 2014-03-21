@@ -13,9 +13,9 @@
 
 
 @interface MTOCDAssignmentLine ()
-@property (nonatomic, retain) NSString *beforeEquals;
-@property (nonatomic, retain) NSString *shorthandSymbol;
-@property (nonatomic, retain) NSString *afterEquals;
+@property (nonatomic, strong) NSString *beforeEquals;
+@property (nonatomic, strong) NSString *shorthandSymbol;
+@property (nonatomic, strong) NSString *afterEquals;
 @end
 
 

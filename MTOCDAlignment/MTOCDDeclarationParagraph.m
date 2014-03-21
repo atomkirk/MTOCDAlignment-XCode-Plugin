@@ -13,9 +13,9 @@
 
 @implementation MTOCDDeclarationParagraph
 
-- (void)processLines
+- (void)parseLines
 {
-    [super processLines];
+    [super parseLines];
 
     NSInteger maxColumn = 0;
     for (MTOCDDeclarationLine *line in self.typeLines) {
